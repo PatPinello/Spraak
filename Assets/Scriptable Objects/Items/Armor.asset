@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0635de2f35311f348bce034887060798, type: 3}
   m_Name: Armor
   m_EditorClassIdentifier: Assembly-CSharp::EquimentObject
-  Id: 1
+  Id: 0
   uiDisplay: {fileID: 21300000, guid: 7d161b8ab976691458cbd277bbd005f4, type: 3}
   type: 1
   description: Equipment
