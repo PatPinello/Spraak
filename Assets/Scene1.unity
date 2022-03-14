@@ -18731,7 +18731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df94c1b2a623064089cb012c1ae76c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chestInventory: {fileID: 0}
+  chestInventory: {fileID: 1115098900}
   closedChest: {fileID: 214329579}
   openedChest: {fileID: 199160429}
   opened: 0
@@ -19045,6 +19045,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d83e85f9adfbbb40913c69d76cb64f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataBaseName: PlayerDictionary
+  column1: English
+  column2: Foreign
   inventory: {fileID: 11400000, guid: d4467ecb64be1094a85b5d0eddc140a5, type: 2}
 --- !u!114 &717816343
 MonoBehaviour:
@@ -60483,7 +60486,7 @@ PrefabInstance:
       objectReference: {fileID: 717816336}
     - target: {fileID: 3382596880629988052, guid: 8d2d915a5a8abe346aaf86ad7861aad3, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3382596880629988052, guid: 8d2d915a5a8abe346aaf86ad7861aad3, type: 3}
       propertyPath: pickUpDistance
