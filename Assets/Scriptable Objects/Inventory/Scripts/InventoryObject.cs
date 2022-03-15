@@ -16,25 +16,18 @@ public class InventoryObject : ScriptableObject
     
     void Update()
     {
-        // for (int i = 0; i < Items.Length; i++)
-        // {
-        //     Debug.Log(Items[i]);
-        // }
+        
     }
     public void AddItem(Item _item, int _amount)
     {
         DatabaseControl db = ScriptableObject.CreateInstance<DatabaseControl>(); //Getting DatabaseControl Scriptable object
-        //if (_item.buffs.Length > 0)
-        //{
-        //    SetEmptySlot(_item, _amount);
-        //    return;
-        //}
-        db.AddInventoryItem("InventoryDB", "Item ID", "Item Name", "Item Amount", "Item Attribute", _item.Id, _item.Name, _amount, _item.buffs[0].attribute.ToString());
-        
+        db.AddInventoryItem("InventoryDB", "ItemID", "Item Name", "Item Amount", "Item Attribute", _item.Id, _item.Name, _amount, _item.buffs[0].attribute.ToString());
+        db.DisplayInventoryDatabase("InventoryDB", "ItemID", "Item Name", "Item Amount", "Item Attribute");
+
         for (int i = 0; i < Container.Items.Length; i++)
         {
             // Debug.Log("Item name: " + _item.Name);
-            // Debug.Log("Item ID: " + _item.Id);
+            // Debug.Log("ItemID: " + _item.Id);
             // Debug.Log("Item Buff: " + _item.buffs[0].attribute);
             // Debug.Log("Item amount: " + _amount);
             //Debug.Log(Container.Items[i].ID);
@@ -139,7 +132,7 @@ public class InventoryObject : ScriptableObject
 [System.Serializable]
 public class Inventory
 {
-    public InventorySlot[] Items = new InventorySlot[70];
+    public InventorySlot[] Items = new InventorySlot[30];
 }
 [System.Serializable]
 public class InventorySlot

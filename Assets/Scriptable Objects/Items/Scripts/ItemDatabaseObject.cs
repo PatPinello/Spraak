@@ -10,10 +10,7 @@ public class ItemDatabaseObject : ScriptableObject, ISerializationCallbackReceiv
 
     void OnEnable ()
     {
-        for (int i = 0; i < Items.Length; i++)
-        {
-            //Debug.Log(Items[i]);
-        }
+        
     }
     public void OnAfterDeserialize()
     {

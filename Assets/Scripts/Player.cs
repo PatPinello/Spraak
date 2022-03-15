@@ -12,12 +12,17 @@ public class Player : MonoBehaviour
     void Start()
     {
         
-        DatabaseControl db = ScriptableObject.CreateInstance<DatabaseControl>(); //Getting Databasecontrol Scriptable object
+        DatabaseControl db = ScriptableObject.CreateInstance<DatabaseControl>(); //Getting DatabaseControl Scriptable object
         db.CreateDB("PlayerDictionary", "English","Foreign");
-        db.AddWord("PlayerDictionary", "English","Foreign","weird", "asdawd");
-        db.DisplayDatabase("PlayerDictionary", "English", "Foreign");
+        //db.AddWord("PlayerDictionary", "English","Foreign","weird", "asdawd");
+        //db.DisplayDatabase("PlayerDictionary", "English", "Foreign");
 
-        db.CreateInventoryDB("InventoryDB", "Item ID", "Item Name", "Item Amount", "Item Attribute");
+        db.CreateInventoryDB("InventoryDB", "ItemID", "Item Name", "Item Amount", "Item Attribute");
+        // if(db.RowExists("InventoryDB", "ItemID", 1))
+        // {
+        //     Debug.Log("OK!");
+        // }
+        
        
     }
 
@@ -44,9 +49,9 @@ public class Player : MonoBehaviour
 
         
     }
-    //private void OnApplicationQuit()
-    //{
-    //    inventory.Container.Items = new InventorySlot[28];
-    //}
+    private void OnApplicationQuit()
+    {
+       inventory.Container.Items = new InventorySlot[28];
+    }
 
 }
