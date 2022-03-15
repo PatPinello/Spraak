@@ -5,9 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public string dataBaseName = "PlayerDictionary";
-    public string column1 = "English";
-    public string column2 = "Foreign";
+   
     public InventoryObject inventory;
     // Start is called before the first frame update
     
@@ -15,11 +13,12 @@ public class Player : MonoBehaviour
     {
         
         DatabaseControl db = ScriptableObject.CreateInstance<DatabaseControl>(); //Getting Databasecontrol Scriptable object
-        db.CreateDB(dataBaseName, column1,column2);
-        db.AddWord(dataBaseName, column1,column2,"weird", "asdawd");
-        db.DisplayDatabase(dataBaseName, column1, column2);
+        db.CreateDB("PlayerDictionary", "English","Foreign");
+        db.AddWord("PlayerDictionary", "English","Foreign","weird", "asdawd");
+        db.DisplayDatabase("PlayerDictionary", "English", "Foreign");
 
-        
+        db.CreateInventoryDB("InventoryDB", "Item ID", "Item Name", "Item Amount", "Item Attribute");
+       
     }
 
     public void OnTriggerEnter2D(Collider2D other)

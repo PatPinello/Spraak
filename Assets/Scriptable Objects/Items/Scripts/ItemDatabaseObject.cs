@@ -12,7 +12,7 @@ public class ItemDatabaseObject : ScriptableObject, ISerializationCallbackReceiv
     {
         for (int i = 0; i < Items.Length; i++)
         {
-            Debug.Log(Items[i]);
+            //Debug.Log(Items[i]);
         }
     }
     public void OnAfterDeserialize()

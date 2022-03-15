@@ -27,6 +27,45 @@ public class DatabaseControl : ScriptableObject
          }
      }
 
+     public void CreateInventoryDB(string database, string itemID, string itemName, string itemAmount, string itemAttribute)
+     {
+        string dbName = "URI=file:" + database + ".db";
+         using (var conn = new SqliteConnection(dbName))
+         {
+             conn.Open();
+
+             using (var cmd = conn.CreateCommand())
+             {
+                cmd.CommandText = "CREATE TABLE IF NOT EXISTS " + database + "('" + itemID + "' INT(20), '" + itemName + "' VARCHAR(20), '" + itemAmount + "' INT(20), '" + itemAttribute + "' VARCHAR(20));";
+                cmd.ExecuteNonQuery();
+             }
+             conn.Close();
+         }
+     }
+
+     public void AddInventoryItem(string database, string itemIDCol, string itemNameCol, string itemAmountCol, string itemAttributeCol, int itemID, string itemName, int itemAmount, string itemAttribute)
+     {
+        string dbName = "URI=file:" + database + ".db";
+         using (var conn = new SqliteConnection(dbName))
+         {
+             conn.Open();
+
+             using (var cmd = conn.CreateCommand())
+             {
+                cmd.CommandText = 
+                "INSERT INTO " + database + "('" + itemIDCol + "', '" + itemNameCol + "', '" + itemAmountCol + "', '" + itemAttributeCol + "') VALUES (@itemID, @itemName, @itemAmount, @itemAttribute);";
+
+                cmd.Parameters.AddWithValue("@itemID", itemID);
+                cmd.Parameters.AddWithValue("@itemName", itemName);
+                cmd.Parameters.AddWithValue("@itemAmount", itemAmount);
+                cmd.Parameters.AddWithValue("@itemAttribute", itemAttribute);
+                
+                cmd.ExecuteNonQuery();
+             }
+             conn.Close();
+         }
+     }
+
      public void AddWord(string database, string col1, string col2, string attr1, string attr2)
      {
         string dbName = "URI=file:" + database + ".db";
