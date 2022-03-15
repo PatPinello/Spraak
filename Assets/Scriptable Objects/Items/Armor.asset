@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Armor
   m_EditorClassIdentifier: Assembly-CSharp::EquimentObject
   Id: 0
-  uiDisplay: {fileID: 21300000, guid: 7d161b8ab976691458cbd277bbd005f4, type: 3}
+  uiDisplay: {fileID: 21300000, guid: a7ba0e1401155e542a1d9da92d6f8f04, type: 3}
   type: 1
   description: Equipment
   buffs:

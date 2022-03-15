@@ -28,7 +28,7 @@ public class DisplayInventory : MonoBehaviour
     void Update()
     {
         UpdateSlots();
-        
+
     }
     public void CreateSlots()
     {

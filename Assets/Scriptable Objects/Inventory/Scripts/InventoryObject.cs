@@ -14,7 +14,13 @@ public class InventoryObject : ScriptableObject
     public Inventory Container;
     
     //DatabaseControl db = ScriptableObject.CreateInstance<DatabaseControl>(); //Getting DatabaseControl Scriptable object
-
+    void Update()
+    {
+        // for (int i = 0; i < Items.Length; i++)
+        // {
+        //     Debug.Log(Items[i]);
+        // }
+    }
     public void AddItem(Item _item, int _amount)
     {
         //if (_item.buffs.Length > 0)
@@ -25,8 +31,10 @@ public class InventoryObject : ScriptableObject
 
         for (int i = 0; i < Container.Items.Length; i++)
         {
-            
-            
+            Debug.Log(_item.Name);
+            Debug.Log(_amount);
+            Debug.Log(Container.Items[i].ID);
+
             if (Container.Items[i].ID == _item.Id)
             {
                 Container.Items[i].AddAmount(_amount);
@@ -75,18 +83,22 @@ public class InventoryObject : ScriptableObject
     {
         Debug.Log(Application.persistentDataPath);
 
-        // string saveData = JsonUtility.ToJson(this, true);
-        // BinaryFormatter bf = new BinaryFormatter();
-        // FileStream file = File.Create(string.Concat(Application.persistentDataPath, savePath));
-        // bf.Serialize(file, saveData);
-        // file.Close();
+        string saveData = JsonUtility.ToJson(this, true);
+        Debug.Log(saveData);
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(string.Concat(Application.persistentDataPath, savePath));
+        bf.Serialize(file, saveData);
+        file.Close();
         
 
-        IFormatter formatter = new BinaryFormatter();
-        Stream stream = new FileStream(string.Concat(Application.persistentDataPath, savePath), FileMode.Create, FileAccess.Write);
-        formatter.Serialize(stream, Container);
-        stream.Close();
-       
+        // IFormatter formatter = new BinaryFormatter();
+        // Stream stream = new FileStream(string.Concat(Application.persistentDataPath, savePath), FileMode.Create, FileAccess.Write);
+        // Debug.Log(stream);
+        // Debug.Log(Container);
+        // formatter.Serialize(stream, Container);
+        // stream.Close();
+
+        
 
     }
     [ContextMenu("Load")]
@@ -95,20 +107,20 @@ public class InventoryObject : ScriptableObject
         
         if (File.Exists(string.Concat(Application.persistentDataPath, savePath)))
         {
-            // BinaryFormatter bf = new BinaryFormatter();
-            // FileStream file = File.Open(string.Concat(Application.persistentDataPath, savePath), FileMode.Open);
-            // JsonUtility.FromJsonOverwrite(bf.Deserialize(file).ToString(), this);
-            // file.Close();
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(string.Concat(Application.persistentDataPath, savePath), FileMode.Open);
+            JsonUtility.FromJsonOverwrite(bf.Deserialize(file).ToString(), this);
+            file.Close();
 
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream(string.Concat(Application.persistentDataPath, savePath), FileMode.Open, FileAccess.Read);
-            Inventory newContainer = (Inventory)formatter.Deserialize(stream);
-            for (int i = 0; i < Container.Items.Length; i++)
-            {
+            // IFormatter formatter = new BinaryFormatter();
+            // Stream stream = new FileStream(string.Concat(Application.persistentDataPath, savePath), FileMode.Open, FileAccess.Read);
+            // Inventory newContainer = (Inventory)formatter.Deserialize(stream);
+            // for (int i = 0; i < Container.Items.Length; i++)
+            // {
                 
-                Container.Items[i].UpdateSlot(newContainer.Items[i].ID, newContainer.Items[i].item, newContainer.Items[i].amount);
-            }
-            stream.Close();
+            //     Container.Items[i].UpdateSlot(newContainer.Items[i].ID, newContainer.Items[i].item, newContainer.Items[i].amount);
+            // }
+            // stream.Close();
         }
     }
     [ContextMenu("Clear")]

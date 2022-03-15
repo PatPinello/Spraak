@@ -55887,8 +55887,8 @@ MonoBehaviour:
   X_START: -295
   Y_START: 110
   X_SPACE_BETWEEN_ITEM: 50
-  NUMBER_OF_COLUMN: 15
-  Y_SPACE_BETWEEN_ITEMS: 11
+  NUMBER_OF_COLUMN: 8
+  Y_SPACE_BETWEEN_ITEMS: 50
 --- !u!114 &959850328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59319,7 +59319,7 @@ SpriteRenderer:
   m_SortingLayerID: -460737987
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7d161b8ab976691458cbd277bbd005f4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a7ba0e1401155e542a1d9da92d6f8f04, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

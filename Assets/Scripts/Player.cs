@@ -13,10 +13,13 @@ public class Player : MonoBehaviour
     
     void Start()
     {
+        
         DatabaseControl db = ScriptableObject.CreateInstance<DatabaseControl>(); //Getting Databasecontrol Scriptable object
         db.CreateDB(dataBaseName, column1,column2);
         db.AddWord(dataBaseName, column1,column2,"weird", "asdawd");
         db.DisplayDatabase(dataBaseName, column1, column2);
+
+        
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -25,7 +28,6 @@ public class Player : MonoBehaviour
         if (item)
         {
             Item _item = new Item(item.item);
-            Debug.Log(_item.Id);
             inventory.AddItem(_item, 1);
             Destroy(other.gameObject);
         }
@@ -40,6 +42,8 @@ public class Player : MonoBehaviour
         {
             inventory.Load();
         }
+
+        
     }
     //private void OnApplicationQuit()
     //{
