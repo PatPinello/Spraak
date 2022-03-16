@@ -11,6 +11,9 @@ using Mono.Data.Sqlite;
 public class DatabaseControl : ScriptableObject
 {
     //private string dbName = "URI=file:DictDB.db";
+
+    public string stringItemAmount;
+
     public void CreateDB(string database, string col1, string col2)
     {
     string dbName = "URI=file:" + database + ".db";
@@ -36,7 +39,7 @@ public class DatabaseControl : ScriptableObject
 
             using (var cmd = conn.CreateCommand())
             {
-            cmd.CommandText = "CREATE TABLE IF NOT EXISTS " + database + "('" + itemID + "' INT(20), '" + itemName + "' VARCHAR(20), '" + itemAmount + "' INT(20), '" + itemAttribute + "' VARCHAR(20));";
+            cmd.CommandText = "CREATE TABLE IF NOT EXISTS " + database + "('" + itemID + "' INT(20) PRIMARY KEY, '" + itemName + "' VARCHAR(20), '" + itemAmount + "' INT(20), '" + itemAttribute + "' VARCHAR(20));";
             cmd.ExecuteNonQuery();
             }
             conn.Close();
@@ -52,30 +55,55 @@ public class DatabaseControl : ScriptableObject
 
             using (var cmd = conn.CreateCommand())
             {
-                cmd.CommandText = 
-                "INSERT INTO " + database + "('" + itemIDCol + "', '" + itemNameCol + "', '" + itemAmountCol + "', '" + itemAttributeCol + "') VALUES (@itemID, @itemName, @itemAmount, @itemAttribute);";
-
-                cmd.Parameters.AddWithValue("@itemID", itemID);
-                cmd.Parameters.AddWithValue("@itemName", itemName);
-                cmd.Parameters.AddWithValue("@itemAmount", itemAmount);
-                cmd.Parameters.AddWithValue("@itemAttribute", itemAttribute);
                 
-                if(!RowExists(database, itemIDCol, itemID))
-                { 
+                if(!ItemExists(database, itemID))
+                {
+                
+                    cmd.CommandText = 
+                    "INSERT INTO " + database + "('" + itemIDCol + "', '" + itemNameCol + "', '" + itemAmountCol + "', '" + itemAttributeCol + "') VALUES (@itemID, @itemName, @itemAmount, @itemAttribute);";
+
+                    cmd.Parameters.AddWithValue("@itemID", itemID);
+                    cmd.Parameters.AddWithValue("@itemName", itemName);
+                    cmd.Parameters.AddWithValue("@itemAmount", itemAmount);
+                    cmd.Parameters.AddWithValue("@itemAttribute", itemAttribute);
+
                     cmd.ExecuteNonQuery();
+                    conn.Close();
 
                 }
                 else
                 {
-                    cmd.CommandText = 
-                    "UPDATE " + database + " SET 'Item Amount' = " + itemAmount+10 + " WHERE ItemID = '" + itemID + "';";
-                    cmd.ExecuteNonQuery();
-                }
+                    Debug.Log("CATCH");
+                    cmd.CommandText = "SELECT * FROM " + database + ";";
                 
+                    using (IDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                            stringItemAmount = "" + reader[itemAmountCol];
+                            
+                    }
+                    cmd.ExecuteNonQuery();
+                    Debug.Log(stringItemAmount);
+                    int newitemAmount = 1;
+                    bool parse = int.TryParse(stringItemAmount, out newitemAmount);
+                    newitemAmount += 1;
+                    
+                    cmd.CommandText = 
+                     "UPDATE " + database + " SET 'Item Amount' = " + newitemAmount + " WHERE ItemID = '" + itemID + "';";
+                    //"UPDATE InventoryDB SET 'Item Amount' = 10 WHERE ItemID = 1;";
+                    //"INSERT INTO " + database + " (" + itemIDCol + ") SELECT ('" + itemID + "') WHERE NOT EXISTS (SELECT 1 FROM " + database + " WHERE " + itemIDCol + " = '" + itemID + "');";
+
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
             }
-            conn.Close();
+                
+                
+            
         }
+            
     }
+    
 
     public void AddWord(string database, string col1, string col2, string attr1, string attr2)
     {
@@ -144,7 +172,7 @@ public class DatabaseControl : ScriptableObject
         }
     }
 
-    public bool RowExists(string database, string columnName, int itemID) 
+    public bool ItemExists(string database, int itemID) 
     {
         bool exists = false;
         string dbName = "URI=file:" + database + ".db";
@@ -157,17 +185,16 @@ public class DatabaseControl : ScriptableObject
                 try
                 {
                     cmd.CommandText = 
-                    "INSERT INTO " + database + " ('" + columnName + "') SELECT ('" + itemID + "') WHERE NOT EXISTS (SELECT 1 FROM " + database + " WHERE " + columnName + " = '" + itemID + "');";
+                    "SELECT 1 FROM " + database + " WHERE ItemID='" + itemID + "';";
                     cmd.ExecuteNonQuery();
+                    conn.Close();
                     exists = true;
                 }
                 catch
                 {
                     exists = false;
                 }
-            }
-            
-            conn.Close();
+            }            
         }
         return exists;
     } 
