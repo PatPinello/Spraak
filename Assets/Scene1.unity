@@ -19045,9 +19045,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d83e85f9adfbbb40913c69d76cb64f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataBaseName: PlayerDictionary
-  column1: English
-  column2: Foreign
   inventory: {fileID: 11400000, guid: d4467ecb64be1094a85b5d0eddc140a5, type: 2}
 --- !u!114 &717816343
 MonoBehaviour:

@@ -5,34 +5,22 @@ using UnityEngine.UI;
 
 public class Dialog : MonoBehaviour
 {
-
-
     public GameObject dialogBox;
     public Text dialogText;
     public string dialog;
     public bool playerInRange;
     public bool playerInDialog = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-      
         if(Input.GetKeyDown(KeyCode.Space) && playerInRange)
         {
-
             //thePlayer.canMove = false;
             if (dialogBox.activeInHierarchy)
             {
                 dialogBox.SetActive(false);
                 playerInDialog = false;
-
-}
+            }
             else
             {
                 dialogBox.SetActive(true);

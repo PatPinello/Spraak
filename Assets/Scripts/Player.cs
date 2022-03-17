@@ -11,8 +11,9 @@ public class Player : MonoBehaviour
     
     void Start()
     {
-        
         DatabaseControl db = ScriptableObject.CreateInstance<DatabaseControl>(); //Getting DatabaseControl Scriptable object
+        Acquistion acq = ScriptableObject.CreateInstance<Acquistion>();
+
         db.CreateDB("PlayerDictionary", "English","Foreign");
         //db.AddWord("PlayerDictionary", "English","Foreign","weird", "asdawd");
         //db.DisplayDatabase("PlayerDictionary", "English", "Foreign");
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
         //     Debug.Log("OK!");
         // }
         
+        acq.AddWordToDictionary(1,"Hello");
        
     }
 
@@ -53,5 +55,4 @@ public class Player : MonoBehaviour
     {
        inventory.Container.Items = new InventorySlot[28];
     }
-
 }
