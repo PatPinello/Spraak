@@ -60483,7 +60483,7 @@ PrefabInstance:
       objectReference: {fileID: 717816336}
     - target: {fileID: 3382596880629988052, guid: 8d2d915a5a8abe346aaf86ad7861aad3, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3382596880629988052, guid: 8d2d915a5a8abe346aaf86ad7861aad3, type: 3}
       propertyPath: pickUpDistance

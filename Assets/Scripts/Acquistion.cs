@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Acquistion : ScriptableObject
 {
-    public string NPCText = "Hello, my friend";
+    public string NPCText = "Bonjour, mon ami";
     public string displayText;
     public Dictionary<int, string> NPCDict = new Dictionary<int,  string>();
     public Dictionary<int, string> PlayerDictionary = new Dictionary<int,  string>();
@@ -32,9 +32,6 @@ public class Acquistion : ScriptableObject
     }
     public void AddWordToDictionary(int key, string word)
     {
-
-
-
         bool keyExists = PlayerDictionary.ContainsKey(key);
 
         if(!keyExists)
@@ -45,27 +42,25 @@ public class Acquistion : ScriptableObject
     public void CompareDictionaries(Dictionary<int, string> dictOne, Dictionary<int, string> dictTwo)
     {
         int count = 0;
-            foreach(int dictKey in dictOne.Keys)
+        foreach(int dictKey in dictOne.Keys)
+        {
+            foreach(int npcKey in dictTwo.Keys)
             {
-                foreach(int npcKey in dictTwo.Keys)
+                if(dictKey.Equals(npcKey))
                 {
-                    if(dictKey.Equals(npcKey))
+                    if(count.Equals(0))
                     {
-                        if(count.Equals(0))
-                        {
-                            displayText = NPCText.Replace(dictTwo[dictKey], dictOne[npcKey]);
-                            count++;
-                        }
-                        else
-                        {
-                            displayText = displayText.Replace(dictTwo[dictKey], dictOne[npcKey]);
-                            count++;
-                        }
+                        displayText = NPCText.Replace(dictTwo[dictKey], dictOne[npcKey]);
+                        count++;
+                    }
+                    else
+                    {
+                        displayText = displayText.Replace(dictTwo[dictKey], dictOne[npcKey]);
+                        count++;
                     }
                 }
             }
-                Debug.Log("\t" + "\t" + displayText);
-
+        }
     }
     public string CleanUpText(string txt)
     {

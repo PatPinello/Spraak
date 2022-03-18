@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-   
+
     public InventoryObject inventory;
     // Start is called before the first frame update
-    
+
     void Start()
     {
         DatabaseControl db = ScriptableObject.CreateInstance<DatabaseControl>(); //Getting DatabaseControl Scriptable object
@@ -23,9 +23,9 @@ public class Player : MonoBehaviour
         // {
         //     Debug.Log("OK!");
         // }
-        
+
         acq.AddWordToDictionary(1,"Hello");
-       
+
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
             inventory.Load();
         }
 
-        
+
     }
     private void OnApplicationQuit()
     {

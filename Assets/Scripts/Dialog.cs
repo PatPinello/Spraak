@@ -13,6 +13,7 @@ public class Dialog : MonoBehaviour
 
     void Update()
     {
+        Acquistion acq = ScriptableObject.CreateInstance<Acquistion>();
         if(Input.GetKeyDown(KeyCode.Space) && playerInRange)
         {
             //thePlayer.canMove = false;
@@ -36,7 +37,7 @@ public class Dialog : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerInRange = true;
-            Debug.Log("Player in Range");
+            //Debug.Log("Player in Range");
         }
 
     }
@@ -46,7 +47,7 @@ public class Dialog : MonoBehaviour
         {
             playerInRange = false;
             Debug.Log("Player left Range");
-            dialogBox.SetActive(false);
+            //dialogBox.SetActive(false);
         }
     }
 

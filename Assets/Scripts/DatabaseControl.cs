@@ -55,11 +55,11 @@ public class DatabaseControl : ScriptableObject
 
             using (var cmd = conn.CreateCommand())
             {
-                
+
                 if(!ItemExists(database, itemID))
                 {
-                
-                    cmd.CommandText = 
+
+                    cmd.CommandText =
                     "INSERT INTO " + database + "('" + itemIDCol + "', '" + itemNameCol + "', '" + itemAmountCol + "', '" + itemAttributeCol + "') VALUES (@itemID, @itemName, @itemAmount, @itemAttribute);";
 
                     cmd.Parameters.AddWithValue("@itemID", itemID);
@@ -75,20 +75,20 @@ public class DatabaseControl : ScriptableObject
                 {
                     Debug.Log("CATCH");
                     cmd.CommandText = "SELECT * FROM " + database + ";";
-                
+
                     using (IDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                             stringItemAmount = "" + reader[itemAmountCol];
-                            
+
                     }
                     cmd.ExecuteNonQuery();
                     Debug.Log(stringItemAmount);
                     int newitemAmount = 1;
                     bool parse = int.TryParse(stringItemAmount, out newitemAmount);
                     newitemAmount += 1;
-                    
-                    cmd.CommandText = 
+
+                    cmd.CommandText =
                      "UPDATE " + database + " SET 'Item Amount' = " + newitemAmount + " WHERE ItemID = '" + itemID + "';";
                     //"UPDATE InventoryDB SET 'Item Amount' = 10 WHERE ItemID = 1;";
                     //"INSERT INTO " + database + " (" + itemIDCol + ") SELECT ('" + itemID + "') WHERE NOT EXISTS (SELECT 1 FROM " + database + " WHERE " + itemIDCol + " = '" + itemID + "');";
@@ -97,13 +97,13 @@ public class DatabaseControl : ScriptableObject
                     conn.Close();
                 }
             }
-                
-                
-            
+
+
+
         }
-            
+
     }
-    
+
 
     public void AddWord(string database, string col1, string col2, string attr1, string attr2)
     {
@@ -114,7 +114,7 @@ public class DatabaseControl : ScriptableObject
 
             using (var cmd = conn.CreateCommand())
             {
-            cmd.CommandText = 
+            cmd.CommandText =
             "INSERT INTO " + database + "('" + col1 + "', '" + col2 + "') VALUES (@attr1, @attr2);";
 
             cmd.Parameters.AddWithValue("@attr1", attr1);
@@ -125,7 +125,7 @@ public class DatabaseControl : ScriptableObject
         }
     }
 
-    
+
     public void DisplayDatabase(string database, string col1, string col2)
     {
     string dbName = "URI=file:" + database + ".db";
@@ -136,7 +136,7 @@ public class DatabaseControl : ScriptableObject
             using (var cmd = conn.CreateCommand())
             {
                 cmd.CommandText = "SELECT * FROM " + database + ";";
-                
+
                 using (IDataReader reader = cmd.ExecuteReader())
                 {
                 while (reader.Read())
@@ -159,7 +159,7 @@ public class DatabaseControl : ScriptableObject
             using (var cmd = conn.CreateCommand())
             {
                 cmd.CommandText = "SELECT * FROM " + database + ";";
-                
+
                 using (IDataReader reader = cmd.ExecuteReader())
                 {
                 while (reader.Read())
@@ -172,7 +172,7 @@ public class DatabaseControl : ScriptableObject
         }
     }
 
-    public bool ItemExists(string database, int itemID) 
+    public bool ItemExists(string database, int itemID)
     {
         bool exists = false;
         string dbName = "URI=file:" + database + ".db";
@@ -184,7 +184,7 @@ public class DatabaseControl : ScriptableObject
             {
                 try
                 {
-                    cmd.CommandText = 
+                    cmd.CommandText =
                     "SELECT 1 FROM " + database + " WHERE ItemID='" + itemID + "';";
                     cmd.ExecuteNonQuery();
                     conn.Close();
@@ -194,9 +194,9 @@ public class DatabaseControl : ScriptableObject
                 {
                     exists = false;
                 }
-            }            
+            }
         }
         return exists;
-    } 
+    }
 }
 
