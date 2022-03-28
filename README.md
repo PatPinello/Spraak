@@ -1,45 +1,46 @@
-**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
+**About The Project**
 
-When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
+This project is a game developed in Unity about language acquisition. The player gains more and more knowledge about a language by speaking with 
+and performing cultural tasks for NPCs. 
 
-*We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
+**Why:**
 
----
+Language learning can be extremely fun and rewarding while allowing for the further development of knowledge surrounding other cultures. Additionally,
+Natural Language Processing and the princples surrounding it are very interesting. This project allows for the experimentation and design of such tools.
 
-## Edit a file
+**Built With:**
 
-You’ll start by editing this README file to learn how to edit a file in Bitbucket.
+C#
+SQLite
 
-1. Click **Source** on the left side.
-2. Click the README.md link from the list of files.
-3. Click the **Edit** button.
-4. Delete the following text: *Delete this line to make a change to the README from Bitbucket.*
-5. After making your change, click **Commit** and then **Commit** again in the dialog. The commit page will open and you’ll see the change you just made.
-6. Go back to the **Source** page.
+The bulk of the content can be found in both Spraak/Assests/Scripts and Spraak/Assests/ScriptableObjects.
 
----
+**DatabaseControl** 
+    
+    This is a script which takes the input of a game object, queries a SQLite database and stores all of its parameters.
+    It's written in a way which allows for the stacking of items, but if one parameter is different, a new item will be created
+    this is ideal for inventories. I have not finished writing the code to display this information, 
+    but it is essentially the same process in reverse.
+    
+    Additionally, it has the capability of storing how much and the specifics of the language the player has learned.
+    
+**Acquistion**
 
-## Create a file
+    This is a script, still early in development, which compares the language knowledge of the player, to that of the NPC. This is done by
+    obtaining the NPCs text, cleaning it up, and building a dictionary from it. The dictionary contains integer keys and 
+    the foreign language words as values. This is then compared to the players dictionary. The goal is for the player to learn specfic
+    words over time, so nested foreach loops will replace the visible text with which ever words are known by the player. 
+    These function are used throughout other scipts aswell.
 
-Next, you’ll add a new file to this repository.
+**Whats Next?**
 
-1. Click the **New file** button at the top of the **Source** page.
-2. Give the file a filename of **contributors.txt**.
-3. Enter your name in the empty file space.
-4. Click **Commit** and then **Commit** again in the dialog.
-5. Go back to the **Source** page.
+   The next steps are to:
+   
+   Create a more sophisticated system of comparing and displaying player and NPC language knowledge.
+   
+   Implimenting the display of items from a database into a UI.
 
-Before you move on, go ahead and explore the repository. You've already seen the **Source** page, but check out the **Commits**, **Branches**, and **Settings** pages.
+Contact
+Pat Pinello - patrickpinello@gmail.com
 
----
-
-## Clone a repository
-
-Use these steps to clone from SourceTree, our client for using the repository command-line free. Cloning allows you to work on your files locally. If you don't yet have SourceTree, [download and install first](https://www.sourcetreeapp.com/). If you prefer to clone from the command line, see [Clone a repository](https://confluence.atlassian.com/x/4whODQ).
-
-1. You’ll see the clone button under the **Source** heading. Click that button.
-2. Now click **Check out in SourceTree**. You may need to create a SourceTree account or log in.
-3. When you see the **Clone New** dialog in SourceTree, update the destination path and name if you’d like to and then click **Clone**.
-4. Open the directory you just created to see your repository’s files.
-
-Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
+Project Link: https://github.com/MrSpankledorf/Spraak/tree/master/Assets
