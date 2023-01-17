@@ -41,6 +41,6 @@ The bulk of the content can be found in both Spraak/Assests/Scripts and Spraak/A
    Implimenting the display of items from a database into a UI.
 
 Contact
-Pat Pinello - patrickpinello@gmail.com
+Pat Pinello - patpinello114@gmail.com
 
 Project Link: https://github.com/MrSpankledorf/Spraak/tree/master/Assets
